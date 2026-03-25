@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rutas y Rumbos — Agencia de Viajes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="/mnt/logo/PNG_RUTAS_Y_RUMBOS.png" alt="Rutas y Rumbos" onerror="this.style.display='none'">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#destinos">Destinos</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Cotizar viaje</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    San Gil, Santander · Colombia
+  </div>
+
+  <h1>
+    <span class="line-white">Tu próxima</span>
+    <span class="line-orange">aventura</span>
+    <span class="line-white">te espera.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Diseñamos experiencias de viaje únicas e inolvidables. Desde destinos nacionales hasta los rincones más remotos del mundo.
+  </p>
+
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+      Planear mi viaje →
+    </button>
+    <a href="#servicios" class="btn-ghost">Ver servicios</a>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num">20+</div>
+    <div class="stat-label">Años de experiencia</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5K+</div>
+    <div class="stat-label">Viajeros felices</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">80+</div>
+    <div class="stat-label">Destinos disponibles</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Atención personalizada</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="servicios">
+  <div class="section-tag">Servicios</div>
+  <h2 class="section-title">Todo lo que necesitas para <em>viajar sin preocupaciones</em></h2>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">✈️</div>
+      <h3>Tiquetes Aéreos</h3>
+      <p>Nacionales e internacionales. Encontramos las mejores tarifas y conexiones para tu destino soñado.</p>
+      <div class="service-arrow">↗</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏨</div>
+      <h3>Hoteles y Hospedaje</h3>
+      <p>Desde hostales boutique hasta resorts de lujo. Seleccionamos el alojamiento perfecto para cada viajero.</p>
+      <div class="service-arrow">↗</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗺️</div>
+      <h3>Paquetes Todo Incluido</h3>
+      <p>Planes completos con tiquetes, hotel, traslados y experiencias. Solo empaca tu maleta.</p>
+      <div class="service-arrow">↗</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚢</div>
+      <h3>Cruceros</h3>
+      <p>Recorre el Caribe, el Mediterráneo y el mundo a bordo de los mejores cruceros del mercado.</p>
+      <div class="service-arrow">↗</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌿</div>
+      <h3>Turismo de Aventura</h3>
+      <p>San Gil es la capital de la aventura en Colombia. Rafting, parapente y senderismo a tu alcance.</p>
+      <div class="service-arrow">↗</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>Asistencia y Seguros</h3>
+      <p>Tramitamos seguros de viaje, visas y toda la documentación que necesitas para tu tranquilidad.</p>
+      <div class="service-arrow">↗</div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="destinations" id="destinos">
+  <div class="section-tag">Destinos</div>
+  <h2 class="section-title">Descubre los <em>mejores destinos</em> del mundo</h2>
+
+  <div class="dest-grid">
+    <div class="dest-card dest-card-1">
+      <div class="dest-img-placeholder">
+        <div class="dest-deco">🏔️</div>
+        <div class="dest-info">
+          <div class="dest-name">San Andrés & Providencia</div>
+          <div class="dest-region">Caribe Colombiano</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-card dest-card-2">
+      <div class="dest-img-placeholder">
+        <div class="dest-deco">🗼</div>
+        <div class="dest-info">
+          <div class="dest-name">Europa</div>
+          <div class="dest-region">Internacionales</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-card dest-card-3">
+      <div class="dest-img-placeholder">
+        <div class="dest-deco">🌴</div>
+        <div class="dest-info">
+          <div class="dest-name">Cartagena</div>
+          <div class="dest-region">Costa Caribe</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-card dest-card-4">
+      <div class="dest-img-placeholder">
+        <div class="dest-deco">🎭</div>
+        <div class="dest-info">
+          <div class="dest-name">Buenos Aires</div>
+          <div class="dest-region">Sudamérica</div>
+        </div>
+      </div>
+    </div>
+    <div class="dest-card dest-card-5">
+      <div class="dest-img-placeholder">
+        <div class="dest-deco">🏖️</div>
+        <div class="dest-info">
+          <div class="dest-name">Cancún & Miami</div>
+          <div class="dest-region">Norteamérica</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHT -->
+<div class="highlight-section" id="nosotros">
+  <div class="highlight-inner">
+    <div class="highlight-logo">
+      <img src="/mnt/logo/PNG_RUTAS_Y_RUMBOS.png" alt="Rutas y Rumbos">
+    </div>
+    <div class="highlight-text">
+      <h2>Más de 20 años haciendo <em style="color:var(--orange);">sueños realidad</em></h2>
+      <p>Somos una agencia de viajes con sede en San Gil, Santander. Conocemos Colombia y el mundo, y ponemos esa experiencia a tu servicio para crear itinerarios únicos, seguros y memorable.</p>
+      <div class="highlight-features">
+        <div class="highlight-feat"><span class="feat-dot"></span> Asesoría personalizada sin costo</div>
+        <div class="highlight-feat"><span class="feat-dot"></span> Precios competitivos garantizados</div>
+        <div class="highlight-feat"><span class="feat-dot"></span> Atención antes, durante y después del viaje</div>
+        <div class="highlight-feat"><span class="feat-dot"></span> Más de 5.000 viajeros satisfechos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="section-tag">Contacto</div>
+  <h2 class="section-title">Estamos listos para <em>planear tu próximo viaje</em></h2>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div class="contact-detail">
+          <div class="contact-label">WhatsApp & Llamadas</div>
+          <div class="contact-value">
+            <a href="tel:3107777106">310 777 7106</a><br>
+            <a href="tel:3204920149">320 492 0149</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-detail">
+          <div class="contact-label">Correo Electrónico</div>
+          <div class="contact-value">
+            <a href="mailto:rutasyrumbos2004@hotmail.com">rutasyrumbos2004@hotmail.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail">
+          <div class="contact-label">Dirección</div>
+          <div class="contact-value">Calle 11 # 9 – 39<br>San Gil, Santander</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div class="contact-detail">
+          <div class="contact-label">Horario de Atención</div>
+          <div class="contact-value">Lun – Sáb: 8:00 am – 6:00 pm</div>
+        </div>
+      </div>
+
+      <!-- WhatsApp buttons -->
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;">
+        <a href="https://wa.me/573107777106?text=Hola!%20Quisiera%20información%20sobre%20un%20viaje" target="_blank" style="flex:1;min-width:180px;background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.3);border-radius:100px;padding:14px 24px;color:#25d366;text-align:center;text-decoration:none;font-size:14px;font-weight:500;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;"
+          onmouseover="this.style.background='rgba(37,211,102,0.22)'" onmouseout="this.style.background='rgba(37,211,102,0.12)'">
+          💬 WhatsApp 1
+        </a>
+        <a href="https://wa.me/573204920149?text=Hola!%20Quisiera%20información%20sobre%20un%20viaje" target="_blank" style="flex:1;min-width:180px;background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.3);border-radius:100px;padding:14px 24px;color:#25d366;text-align:center;text-decoration:none;font-size:14px;font-weight:500;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;"
+          onmouseover="this.style.background='rgba(37,211,102,0.22)'" onmouseout="this.style.background='rgba(37,211,102,0.12)'">
+          💬 WhatsApp 2
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form-card">
+      <h3>Cotiza tu viaje gratis</h3>
+      <div class="form-group">
+        <label class="form-label">Nombre completo</label>
+        <input class="form-input" type="text" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Teléfono / WhatsApp</label>
+        <input class="form-input" type="tel" placeholder="+57 300 000 0000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Destino de interés</label>
+        <select class="form-select">
+          <option value="">Seleccionar destino...</option>
+          <option>San Andrés & Providencia</option>
+          <option>Cartagena</option>
+          <option>Medellín</option>
+          <option>Europa</option>
+          <option>Cancún / Miami</option>
+          <option>Cruceros</option>
+          <option>Otro destino</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mensaje</label>
+        <textarea class="form-textarea" placeholder="Cuéntanos tus planes, fechas, número de viajeros..."></textarea>
+      </div>
+      <button class="form-submit" onclick="sendWhatsApp()">Enviar por WhatsApp →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="/mnt/logo/PNG_RUTAS_Y_RUMBOS.png" alt="Rutas y Rumbos">
+  <p class="footer-copy">© 2024 Rutas y Rumbos Agencia de Viajes · San Gil, Santander</p>
+  <div class="footer-links">
+    <a href="tel:3107777106">310 777 7106</a>
+    <a href="mailto:rutasyrumbos2004@hotmail.com">Correo</a>
+    <a href="https://wa.me/573107777106" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+</body>
+</html>
