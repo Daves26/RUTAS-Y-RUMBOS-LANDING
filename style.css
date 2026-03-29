@@ -639,13 +639,6 @@ body { cursor: auto; }
   line-height: 1.1;
 }
 
-.partnership-title span {
-  color: #0056b3; /* Color azul institucional sugerido para Satena */
-  background: white;
-  padding: 0 12px;
-  border-radius: 8px;
-}
-
 .partnership-text {
   color: var(--white-60);
   line-height: 1.7;
@@ -679,21 +672,28 @@ body { cursor: auto; }
   position: relative;
 }
 
-.plane-icon {
-  font-size: 120px;
-  color: var(--white);
-  opacity: 0.1;
-  transform: rotate(-15deg);
+/* Nuevo contenedor para el logo */
+.partnership-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* Añadimos un ligero brillo de fondo para resaltar el logo */
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
 }
 
-.satena-tag {
-  font-family: 'Syne', sans-serif;
-  font-size: 60px;
-  font-weight: 900;
-  color: var(--white);
-  letter-spacing: -2px;
-  margin-top: -40px;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+/* Estilos para la imagen del logo */
+.partnership-logo {
+  max-width: 80%; /* Ajusta este porcentaje según el formato del logo */
+  height: auto;
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Efecto al pasar el mouse sobre la tarjeta */
+.partnership-card:hover .partnership-logo {
+  transform: scale(1.05);
+  opacity: 1;
 }
 
 /* Responsive */
@@ -766,3 +766,53 @@ html.light .dest-img-container::after {
   transform: scale(1.1);
 }
 
+/* style.css - Añade esto en la sección de tus estilos de SATENA o al final */
+
+/* Estilos base para ambas variantes del logo */
+.partnership-logo {
+  max-width: 80%;
+  height: auto;
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease, display 0.3s ease; /* Añadimos display a la transición */
+}
+
+/* Estado por defecto (Modo Oscuro) */
+/* Mostramos el logo blanco, ocultamos el oscuro */
+.partnership-logo.logo-dark-theme {
+  display: block;
+}
+.partnership-logo.logo-light-theme {
+  display: none;
+}
+
+/* Efecto hover sobre la tarjeta para ambas variantes */
+.partnership-card:hover .partnership-logo {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* --- ESTILOS PARA MODO CLARO --- */
+/* Cuando html tiene la clase .light */
+html.light .partnership-logo.logo-dark-theme {
+  display: none; /* Ocultamos el logo blanco */
+}
+
+html.light .partnership-logo.logo-light-theme {
+  display: block; /* Mostramos el logo oscuro */
+}
+
+/* Opcional: Ajustar el contenedor si es necesario */
+.partnership-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* El drop-shadow original puede ser muy claro para el modo claro */
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
+  transition: filter 0.35s ease; /* Sincronizar con el cambio de tema */
+}
+
+/* Ajuste del drop-shadow para modo claro */
+html.light .partnership-logo-container {
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.05)); /* Sombras más sutiles y oscuras */
+}
