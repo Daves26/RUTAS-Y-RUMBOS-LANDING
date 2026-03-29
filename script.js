@@ -29,14 +29,14 @@ el.addEventListener('mouseleave', () => {
 });
 
 // WhatsApp form
-function sendWhatsApp() {
-const name = document.querySelector('.form-input[type="text"]').value || 'Cliente';
-const phone = document.querySelector('.form-input[type="tel"]').value || '';
-const dest = document.querySelector('.form-select').value || 'por definir';
-const msg = document.querySelector('.form-textarea').value || '';
-const text = `Hola! Soy ${name}${phone ? ` (${phone})` : ''}. Estoy interesado en viajar a: ${dest}. ${msg}`;
-window.open(`https://wa.me/573107777106?text=${encodeURIComponent(text)}`, '_blank');
-}
+window.sendWhatsApp = function () {
+  const name = document.querySelector('.form-input[type="text"]').value || 'Cliente';
+  const phone = document.querySelector('.form-input[type="tel"]').value || '';
+  const dest = document.querySelector('.form-select').value || 'por definir';
+  const msg = document.querySelector('.form-textarea').value || '';
+  const text = `Hola! Soy ${name}${phone ? ` (${phone})` : ''}. Estoy interesado en viajar a: ${dest}. ${msg}`;
+  window.open(`https://wa.me/573107777106?text=${encodeURIComponent(text)}`, '_blank');
+};
 
 // Scroll animations
 const observer = new IntersectionObserver((entries) => {
@@ -55,3 +55,21 @@ el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
 observer.observe(el);
 });
 
+// Toggle modo claro
+window.toggleTheme = function () {
+  document.documentElement.classList.toggle('light');
+};
+
+// Al cargar, verificar si hay una preferencia guardada
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    document.documentElement.classList.remove('light');
+} else {
+    document.documentElement.classList.add('light');
+}
+
+// Función de cambio con persistencia
+window.toggleTheme = function () {
+    const isLight = document.documentElement.classList.toggle('light');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+};
