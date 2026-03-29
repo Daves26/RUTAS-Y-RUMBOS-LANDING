@@ -8,8 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
+<script type="module" src="script.js" defer></script>
 </head>
 <body>
 
@@ -18,15 +17,17 @@
 
 <nav>
   <div class="nav-logo">
-    <img src="/mnt/logo/PNG_RUTAS_Y_RUMBOS.png" alt="Rutas y Rumbos" onerror="this.style.display='none'">
-  </div>
+    <img src="/logo-rutas-y-rumbos.png" alt="Rutas y Rumbos"> </div>
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#destinos">Destinos</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#satena">SATENA</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Cotizar viaje</button>
+  <button class="nav-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+    Cotizar viaje
+  </button>
 </nav>
 
 <section class="hero">
@@ -129,8 +130,9 @@
 
   <div class="dest-grid">
     <div class="dest-card dest-card-1">
-      <div class="dest-img-placeholder">
-        <div class="dest-deco"><i class="fas fa-mountain"></i></div> <div class="dest-info">
+      <div class="dest-img-container">
+        <img src="/destino-san-andres.jpg" alt="San Andrés" class="dest-img">
+        <div class="dest-info">
           <div class="dest-name">San Andrés & Providencia</div>
           <div class="dest-region">Caribe Colombiano</div>
         </div>
@@ -174,7 +176,7 @@
 <div class="highlight-section" id="nosotros">
   <div class="highlight-inner">
     <div class="highlight-logo">
-      <img src="/mnt/logo/PNG_RUTAS_Y_RUMBOS.png" alt="Rutas y Rumbos">
+      <img src="/logo-rutas-y-rumbos.png" alt="Rutas y Rumbos">
     </div>
     <div class="highlight-text">
       <h2>Más de 20 años haciendo <em style="color:var(--orange);">sueños realidad</em></h2>
@@ -188,6 +190,27 @@
     </div>
   </div>
 </div>
+
+<section class="partnership-section" id="satena">
+  <div class="partnership-card">
+    <div class="partnership-content">
+      <div class="partnership-badge">Agencia Oficial</div>
+      <h2 class="partnership-title">Agencia Comercial <span>SATENA</span> en San Gil</h2>
+      <p class="partnership-text">
+        Como representantes oficiales de la aerolínea de los colombianos, facilitamos la compra de tus tiquetes y cambios con atención presencial y directa. Vuela a las regiones más hermosas de Colombia con el respaldo de los expertos.
+      </p>
+      <div class="partnership-features">
+        <div class="p-feat"><i class="fas fa-check-circle"></i> Emisión inmediata de tiquetes</div>
+        <div class="p-feat"><i class="fas fa-check-circle"></i> Asesoría sinb costo</div>
+        <div class="p-feat"><i class="fas fa-check-circle"></i> Tarifas oficiales sin intermediarios</div>
+      </div>
+    </div>
+    <div class="partnership-visual">
+      <i class="fas fa-plane-departure plane-icon"></i>
+      <div class="satena-tag">SATENA</div>
+    </div>
+  </div>
+</section>
 
 <section class="contact" id="contacto">
   <div class="section-tag">Contacto</div>
@@ -268,7 +291,7 @@
 </section>
 
 <footer>
-  <img src="/mnt/logo/PNG_RUTAS_Y_RUMBOS.png" alt="Rutas y Rumbos">
+  <img src="/logo-rutas-y-rumbos.png" alt="Rutas y Rumbos">
   <p class="footer-copy">© 2024 Rutas y Rumbos Agencia de Viajes · San Gil, Santander</p>
   <div class="footer-links">
     <a href="tel:3107777106">310 777 7106</a>

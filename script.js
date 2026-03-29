@@ -1,3 +1,5 @@
+import './style.css';
+
 // Cursor
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
@@ -52,3 +54,4 @@ el.style.transform = 'translateY(24px)';
 el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
 observer.observe(el);
 });
+
