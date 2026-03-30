@@ -60,16 +60,28 @@ window.toggleTheme = function () {
   document.documentElement.classList.toggle('light');
 };
 
-// Al cargar, verificar si hay una preferencia guardada
+const html = document.documentElement;
+
+// 1. Determinar el tema inicial
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-    document.documentElement.classList.remove('light');
+const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+    html.classList.remove('light');
 } else {
-    document.documentElement.classList.add('light');
+    html.classList.add('light');
 }
 
-// Función de cambio con persistencia
+// 2. Función de cambio mejorada
 window.toggleTheme = function () {
-    const isLight = document.documentElement.classList.toggle('light');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    const isNowLight = html.classList.toggle('light');
+    localStorage.setItem('theme', isNowLight ? 'light' : 'dark');
 };
+
+// 3. Escuchar cambios en el sistema en tiempo real (opcional)
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('theme')) { // Solo si el usuario no ha elegido manualmente
+        if (e.matches) html.classList.remove('light');
+        else html.classList.add('light');
+    }
+});
