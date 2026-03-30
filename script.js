@@ -1,14 +1,48 @@
 import './style.css';
 
-// Cursor
+// Menú móvil (panel accesible)
+const siteNav = document.getElementById('siteNav');
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+
+function setNavOpen(open) {
+  if (!siteNav || !navToggle) return;
+  siteNav.classList.toggle('nav-open', open);
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  document.body.classList.toggle('nav-open', open);
+}
+
+navToggle?.addEventListener('click', () => {
+  setNavOpen(!siteNav?.classList.contains('nav-open'));
+});
+
+navMenu?.querySelectorAll('a[href^="#"]').forEach((a) => {
+  a.addEventListener('click', () => setNavOpen(false));
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 769) setNavOpen(false);
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') setNavOpen(false);
+});
+
+// Cursor (solo escritorio; cursor oculto en móvil vía CSS)
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
 let mx = 0, my = 0, rx = 0, ry = 0;
 document.addEventListener('mousemove', e => {
+if (!cursor || window.innerWidth < 769) return;
 mx = e.clientX; my = e.clientY;
 cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
 });
 function animRing() {
+if (!ring || window.innerWidth < 769) {
+  requestAnimationFrame(animRing);
+  return;
+}
 rx += (mx - rx) * 0.12;
 ry += (my - ry) * 0.12;
 ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
@@ -16,14 +50,16 @@ requestAnimationFrame(animRing);
 }
 animRing();
 
-// Hover effects on interactive elements
+// Hover effects on interactive elements (escritorio)
 document.querySelectorAll('button, a, .service-card, .dest-card, .contact-item').forEach(el => {
 el.addEventListener('mouseenter', () => {
+    if (!cursor || window.innerWidth < 769) return;
     cursor.style.transform += ' scale(1.5)';
     ring.style.opacity = '1';
     ring.style.transform += ' scale(1.3)';
 });
 el.addEventListener('mouseleave', () => {
+    if (!ring || window.innerWidth < 769) return;
     ring.style.opacity = '0.6';
 });
 });
