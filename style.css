@@ -61,6 +61,14 @@ body {
   body { cursor: none; }
 }
 
+a, a.hero-badge {
+  cursor: none;
+}
+
+label, input, select, textarea {
+  cursor: none;
+}
+
 /* Custom cursor — solo escritorio (touch usa cursor del sistema) */
 .cursor {
 display: none;
@@ -1209,4 +1217,16 @@ html.light .partnership-logo.logo-light-theme {
 /* Ajuste del drop-shadow para modo claro */
 html.light .partnership-logo-container {
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.05)); /* Sombras más sutiles y oscuras */
+}
+
+/* logo hover effect */
+.nav-logo {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05); /* mouse zoom on hover */ 
 }

@@ -50,6 +50,17 @@ requestAnimationFrame(animRing);
 }
 animRing();
 
+// Scroll to top
+const logoInicio = document.querySelector('.nav-logo');
+logoInicio.addEventListener('click', (e) => {
+  e.preventDefault(); // Evita el salto brusco del enlace
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Esto crea el efecto "Premium" de deslizamiento
+  });
+});
+
+
 // Hover effects on interactive elements (escritorio)
 document.querySelectorAll('button, a, .service-card, .dest-card, .contact-item').forEach(el => {
 el.addEventListener('mouseenter', () => {
