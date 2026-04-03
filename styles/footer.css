@@ -1,0 +1,123 @@
+/* Footer */
+footer {
+  border-top: 1px solid var(--glass-border);
+  padding: 36px 20px;
+  padding-bottom: max(36px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+footer img {
+  height: 36px;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.footer-copy {
+  font-size: clamp(12px, 0.2vw + 0.75rem, 13px);
+  color: var(--white-30);
+  font-weight: 300;
+  max-width: 22rem;
+  line-height: 1.5;
+}
+
+.footer-cursor-toggle {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 0.92em;
+  font-weight: 300;
+  color: var(--white-30);
+  opacity: 0.32;
+  flex-shrink: 0;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s, text-decoration-color 0.2s;
+}
+
+.footer-cursor-toggle:hover {
+  opacity: 0.55;
+  text-decoration-color: color-mix(in srgb, var(--white-30) 50%, transparent);
+}
+
+.footer-cursor-toggle:focus-visible {
+  opacity: 0.7;
+  outline: 1px solid var(--glass-border-orange);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (min-width: 769px) {
+  .footer-cursor-toggle {
+    cursor: none;
+  }
+
+  html.no-custom-cursor .footer-cursor-toggle {
+    cursor: pointer;
+  }
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-links a {
+  font-size: 15px;
+  min-height: 44px;
+  padding: 8px 4px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--white-30);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--orange-light);
+}
+
+@media (min-width: 769px) {
+  footer {
+    padding: 48px 60px;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    gap: 24px;
+  }
+
+  .footer-brand {
+    justify-content: flex-start;
+  }
+
+  .footer-copy {
+    max-width: none;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    min-height: 0;
+    padding: 0;
+  }
+}

@@ -1,0 +1,70 @@
+/* Custom cursor — desktop only; touch keeps system cursor */
+.cursor {
+  display: none;
+  width: 12px;
+  height: 12px;
+  background: var(--orange);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  mix-blend-mode: normal;
+}
+
+.cursor-ring {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--orange);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s;
+  opacity: 0.6;
+}
+
+@media (min-width: 769px) {
+  .cursor,
+  .cursor-ring {
+    display: block;
+  }
+}
+
+html.no-custom-cursor .cursor,
+html.no-custom-cursor .cursor-ring {
+  display: none !important;
+}
+
+@media (min-width: 769px) {
+  html.no-custom-cursor body {
+    cursor: auto;
+  }
+
+  html.no-custom-cursor a,
+  html.no-custom-cursor a.hero-badge,
+  html.no-custom-cursor label,
+  html.no-custom-cursor input,
+  html.no-custom-cursor select,
+  html.no-custom-cursor textarea {
+    cursor: revert;
+  }
+
+  html.no-custom-cursor .nav-links a {
+    cursor: revert;
+  }
+
+  html.no-custom-cursor .nav-cta,
+  html.no-custom-cursor .theme-toggle,
+  html.no-custom-cursor .btn-primary,
+  html.no-custom-cursor .btn-ghost,
+  html.no-custom-cursor .dest-card,
+  html.no-custom-cursor .form-submit {
+    cursor: pointer;
+  }
+}

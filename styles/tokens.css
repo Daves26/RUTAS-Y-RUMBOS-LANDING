@@ -1,0 +1,46 @@
+/* Design tokens — dark default, overridden in html.light */
+:root {
+  --orange: #ff6600;
+  --orange-light: #ff8c42;
+  --orange-glow: rgba(255, 102, 0, 0.35);
+  --orange-subtle: rgba(255, 102, 0, 0.08);
+  --dark: #080808;
+  --dark-2: #111111;
+  --dark-3: #1a1a1a;
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-orange: rgba(255, 102, 0, 0.25);
+  --white: #ffffff;
+  --white-60: rgba(255, 255, 255, 0.6);
+  --white-30: rgba(255, 255, 255, 0.3);
+  --nav-bg: rgba(8, 8, 8, 0.6);
+  --stats-bg: rgba(255, 255, 255, 0.02);
+  --service-card-bg: #111111;
+  --service-card-hover: #1a1a1a;
+  --form-bg: rgba(255, 255, 255, 0.04);
+  --select-bg: #111111;
+  --footer-bg: rgba(255, 255, 255, 0.01);
+  --theme-transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+html.light {
+  --dark: #f5f4f0;
+  --dark-2: #ffffff;
+  --dark-3: #f0ede8;
+  --glass: rgba(0, 0, 0, 0.04);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-border-orange: rgba(255, 102, 0, 0.3);
+  --white: #0f0f0f;
+  --white-60: rgba(15, 15, 15, 0.6);
+  --white-30: rgba(15, 15, 15, 0.35);
+  --orange-subtle: rgba(255, 102, 0, 0.07);
+  --orange-glow: rgba(255, 102, 0, 0.25);
+  --nav-bg: rgba(245, 244, 240, 0.75);
+  --stats-bg: rgba(0, 0, 0, 0.02);
+  --service-card-bg: #ffffff;
+  --service-card-hover: #faf8f5;
+  --form-bg: rgba(0, 0, 0, 0.03);
+  --select-bg: #ffffff;
+  --footer-bg: rgba(0, 0, 0, 0.02);
+}

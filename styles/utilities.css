@@ -1,0 +1,22 @@
+/* Small-screen overrides */
+@media (max-width: 768px) {
+  body.nav-open {
+    overflow: hidden;
+  }
+
+  .highlight-logo {
+    display: none;
+  }
+
+  .scroll-indicator {
+    bottom: 24px;
+  }
+
+  .partnership-card {
+    text-align: center;
+  }
+
+  .partnership-features {
+    justify-content: center;
+  }
+}
