@@ -97,6 +97,37 @@ opacity: 0.6;
   .cursor, .cursor-ring { display: block; }
 }
 
+/* Preferencia: cursor del sistema (accesibilidad) */
+html.no-custom-cursor .cursor,
+html.no-custom-cursor .cursor-ring {
+  display: none !important;
+}
+
+@media (min-width: 769px) {
+  html.no-custom-cursor body {
+    cursor: auto;
+  }
+  html.no-custom-cursor a,
+  html.no-custom-cursor a.hero-badge,
+  html.no-custom-cursor label,
+  html.no-custom-cursor input,
+  html.no-custom-cursor select,
+  html.no-custom-cursor textarea {
+    cursor: revert;
+  }
+  html.no-custom-cursor .nav-links a {
+    cursor: revert;
+  }
+  html.no-custom-cursor .nav-cta,
+  html.no-custom-cursor .theme-toggle,
+  html.no-custom-cursor .btn-primary,
+  html.no-custom-cursor .btn-ghost,
+  html.no-custom-cursor .dest-card,
+  html.no-custom-cursor .form-submit {
+    cursor: pointer;
+  }
+}
+
 /* NAV — mobile-first (Flexbox) */
 .site-nav {
 position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -951,8 +982,51 @@ gap: 20px;
 text-align: center;
 background: rgba(255,255,255,0.01);
 }
-footer img { height: 36px; opacity: 0.7; }
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+footer img { height: 36px; opacity: 0.7; flex-shrink: 0; }
 .footer-copy { font-size: clamp(12px, 0.2vw + 0.75rem, 13px); color: var(--white-30); font-weight: 300; max-width: 22rem; line-height: 1.5; }
+.footer-cursor-toggle {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 0.92em;
+  font-weight: 300;
+  color: var(--white-30);
+  opacity: 0.32;
+  flex-shrink: 0;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s, text-decoration-color 0.2s;
+}
+.footer-cursor-toggle:hover {
+  opacity: 0.55;
+  text-decoration-color: color-mix(in srgb, var(--white-30) 50%, transparent);
+}
+.footer-cursor-toggle:focus-visible {
+  opacity: 0.7;
+  outline: 1px solid var(--glass-border-orange);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+@media (min-width: 769px) {
+  .footer-cursor-toggle {
+    cursor: none;
+  }
+  html.no-custom-cursor .footer-cursor-toggle {
+    cursor: pointer;
+  }
+}
 .footer-links {
 display: flex;
 flex-wrap: wrap;
@@ -979,6 +1053,9 @@ transition: color 0.2s;
     justify-content: space-between;
     text-align: left;
     gap: 24px;
+  }
+  .footer-brand {
+    justify-content: flex-start;
   }
   .footer-copy { max-width: none; }
   .footer-links a {
