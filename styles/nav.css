@@ -88,6 +88,58 @@
   flex-shrink: 0;
 }
 
+.theme-toggle, .cursor-toggle {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--white);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.theme-toggle:hover, .cursor-toggle:hover {
+  background: var(--orange-subtle);
+  border-color: var(--glass-border-orange);
+  box-shadow: 0 0 16px var(--orange-glow);
+}
+
+.icon-moon, .icon-sun, .icon-cursor {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-sun {
+  display: none;
+}
+
+html.light .icon-moon {
+  display: none;
+}
+
+html.light .icon-sun {
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .theme-toggle, .cursor-toggle {
+    cursor: none;
+  }
+}
+
+html.no-custom-cursor .theme-toggle,
+html.no-custom-cursor .cursor-toggle {
+  cursor: pointer;
+}
+
 .nav-links {
   list-style: none;
   margin: 0;

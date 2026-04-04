@@ -2,8 +2,13 @@ import './style.css';
 
 const htmlRoot = document.documentElement;
 const CURSOR_PREF_KEY = 'ryr-no-custom-cursor';
-if (localStorage.getItem(CURSOR_PREF_KEY) === '1') {
+
+// Cargar preferencia: por defecto es '1' (cursor estándar/no-custom) si no existe
+const savedCursorPref = localStorage.getItem(CURSOR_PREF_KEY);
+if (savedCursorPref === null || savedCursorPref === '1') {
   htmlRoot.classList.add('no-custom-cursor');
+} else {
+  htmlRoot.classList.remove('no-custom-cursor');
 }
 
 function isCustomCursorActive() {
@@ -85,23 +90,11 @@ el.addEventListener('mouseleave', () => {
 });
 });
 
-const footerCursorToggle = document.getElementById('footerCursorToggle');
-function syncCursorToggleUI() {
-  if (!footerCursorToggle) return;
-  const standardOn = htmlRoot.classList.contains('no-custom-cursor');
-  footerCursorToggle.setAttribute('aria-pressed', standardOn ? 'true' : 'false');
-  footerCursorToggle.setAttribute(
-    'aria-label',
-    standardOn ? 'Volver al cursor animado del sitio' : 'Usar el cursor del sistema'
-  );
-  footerCursorToggle.textContent = standardOn ? 'Cursor animado' : 'Cursor estándar';
-}
-footerCursorToggle?.addEventListener('click', () => {
+// Toggle cursor
+window.toggleCursor = function () {
   htmlRoot.classList.toggle('no-custom-cursor');
   localStorage.setItem(CURSOR_PREF_KEY, htmlRoot.classList.contains('no-custom-cursor') ? '1' : '0');
-  syncCursorToggleUI();
-});
-syncCursorToggleUI();
+};
 
 // WhatsApp form
 window.sendWhatsApp = function () {
