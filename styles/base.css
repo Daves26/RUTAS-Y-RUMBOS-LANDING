@@ -11,6 +11,21 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Foco visible coherente con el tema (WCAG 2.4.7, 2.4.11). */
+:where(a, button, input, select, textarea, summary):focus {
+  outline: none;
+}
+
+:where(a, button, summary):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+:where(input:not([type='hidden']), select, textarea):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--dark);

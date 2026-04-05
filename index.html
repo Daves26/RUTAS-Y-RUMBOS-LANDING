@@ -79,14 +79,16 @@
 
   <div class="hero-actions">
     <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
-      Planear mi viaje →
+      Planear mi viaje
     </button>
     <a href="#servicios" class="btn-ghost">Ver servicios</a>
   </div>
 
   <div class="scroll-indicator">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
+    <div class="scroll-indicator__inner">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
   </div>
 </section>
 
@@ -317,7 +319,7 @@
         <label class="form-label">Mensaje</label>
         <textarea class="form-textarea" placeholder="Cuéntanos tus planes, fechas, número de viajeros..."></textarea>
       </div>
-      <button class="form-submit" onclick="sendWhatsApp()">Enviar por WhatsApp →</button>
+      <button class="form-submit" onclick="sendWhatsApp()">Enviar por WhatsApp</button>
     </div>
   </div>
 </section>

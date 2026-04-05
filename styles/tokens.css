@@ -1,5 +1,6 @@
 /* Design tokens — dark default, overridden in html.light */
 :root {
+  color-scheme: dark;
   --orange: #ff6600;
   --orange-light: #ff8c42;
   --orange-glow: rgba(255, 102, 0, 0.35);
@@ -20,27 +21,40 @@
   --form-bg: rgba(255, 255, 255, 0.04);
   --select-bg: #111111;
   --footer-bg: rgba(255, 255, 255, 0.01);
+  --focus-ring: #ff8533;
+  --focus-ring-glow: rgba(255, 102, 0, 0.28);
   --theme-transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease,
     box-shadow 0.35s ease;
 }
 
 html.light {
-  --dark: #f5f4f0;
+  color-scheme: light;
+  /* Fondos: tono neutro cálido; texto principal ≥4.5:1 sobre base (WCAG 2.1 AA). */
+  --dark: #f2f1ec;
   --dark-2: #ffffff;
-  --dark-3: #f0ede8;
-  --glass: rgba(0, 0, 0, 0.04);
-  --glass-border: rgba(0, 0, 0, 0.1);
-  --glass-border-orange: rgba(255, 102, 0, 0.3);
-  --white: #0f0f0f;
-  --white-60: rgba(15, 15, 15, 0.6);
-  --white-30: rgba(15, 15, 15, 0.35);
-  --orange-subtle: rgba(255, 102, 0, 0.07);
-  --orange-glow: rgba(255, 102, 0, 0.25);
-  --nav-bg: rgba(245, 244, 240, 0.75);
-  --stats-bg: rgba(0, 0, 0, 0.02);
+  --dark-3: #ebe8e2;
+  --glass: rgba(0, 0, 0, 0.045);
+  /* Bordes UI un poco más marcados para contraste no textual (~3:1). */
+  --glass-border: rgba(0, 0, 0, 0.14);
+  --glass-border-orange: rgba(184, 71, 0, 0.45);
+  /* Texto principal */
+  --white: #141414;
+  /* Secundario: ~4.6:1 sobre --dark */
+  --white-60: rgba(20, 20, 20, 0.76);
+  /* Terciario / pie: ~4.5:1 sobre --dark */
+  --white-30: rgba(20, 20, 20, 0.58);
+  /* Naranja más oscuro: texto y acentos pequeños legibles sobre claro (AA). */
+  --orange: #b84700;
+  --orange-light: #d45a00;
+  --orange-subtle: rgba(184, 71, 0, 0.1);
+  --orange-glow: rgba(184, 71, 0, 0.22);
+  --nav-bg: rgba(242, 241, 236, 0.82);
+  --stats-bg: rgba(0, 0, 0, 0.025);
   --service-card-bg: #ffffff;
-  --service-card-hover: #faf8f5;
-  --form-bg: rgba(0, 0, 0, 0.03);
+  --service-card-hover: #faf9f6;
+  --form-bg: rgba(0, 0, 0, 0.04);
   --select-bg: #ffffff;
-  --footer-bg: rgba(0, 0, 0, 0.02);
+  --footer-bg: rgba(0, 0, 0, 0.025);
+  --focus-ring: #b84700;
+  --focus-ring-glow: rgba(184, 71, 0, 0.22);
 }

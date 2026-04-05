@@ -72,11 +72,16 @@ html.light .site-nav.site-nav--scrolled {
   transition: background 0.2s, border-color 0.2s;
 }
 
-.nav-toggle:hover,
+.nav-toggle:hover {
+  background: var(--orange-subtle);
+  border-color: var(--glass-border-orange);
+}
+
 .nav-toggle:focus-visible {
   background: var(--orange-subtle);
   border-color: var(--glass-border-orange);
-  outline: none;
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 .nav-toggle-bar {
@@ -124,6 +129,12 @@ html.light .site-nav.site-nav--scrolled {
   background: var(--orange-subtle);
   border-color: var(--glass-border-orange);
   box-shadow: 0 0 16px var(--orange-glow);
+}
+
+.theme-toggle:focus-visible,
+.cursor-toggle:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 .icon-moon, .icon-sun, .icon-cursor {
@@ -206,16 +217,27 @@ html.no-custom-cursor .cursor-toggle {
   cursor: none;
 }
 
-.nav-links a:hover,
-.nav-links a:focus-visible {
+.nav-links a:hover {
   color: var(--white);
   background: var(--orange-subtle);
-  outline: none;
+}
+
+.nav-links a:focus-visible {
+  color: var(--white);
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  .nav-links a:focus-visible {
+    background: var(--orange-subtle);
+    outline-offset: 2px;
+  }
 }
 
 .nav-cta {
   background: var(--orange);
-  color: var(--white);
+  color: #fff;
   border: none;
   border-radius: 100px;
   padding: 12px 18px;
@@ -231,6 +253,11 @@ html.no-custom-cursor .cursor-toggle {
   background: var(--orange-light);
   box-shadow: 0 0 24px var(--orange-glow);
   transform: scale(1.03);
+}
+
+.nav-cta:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
 }
 
 @media (min-width: 769px) {

@@ -328,6 +328,7 @@ html.light .grid-bg {
   position: relative;
   z-index: 1;
   animation: fadeUp 1s 0.65s both;
+  justify-content: center;
 }
 
 .btn-primary {
@@ -345,6 +346,11 @@ html.light .grid-bg {
   cursor: pointer;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background 0.25s ease;
   box-shadow: 0 0 0 0 var(--orange-glow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .btn-primary::after {
@@ -373,6 +379,16 @@ html.light .grid-bg {
   transform: skewX(-18deg) translateX(220%);
 }
 
+.btn-primary:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
 .btn-ghost {
   background: var(--glass);
   border: 1px solid var(--glass-border);
@@ -390,6 +406,8 @@ html.light .grid-bg {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .btn-ghost:hover {
@@ -405,21 +423,22 @@ html.light .btn-ghost:hover {
 
 @media (min-width: 769px) {
   .hero-actions {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    justify-items: stretch;
     gap: 16px;
-    max-width: none;
-    width: auto;
+    width: 100%;
+    max-width: 28rem;
     margin-top: 48px;
   }
 
-  .btn-primary,
-  .btn-ghost {
-    width: auto;
-    min-height: 0;
-    padding: 16px 36px;
+  .hero-actions .btn-primary,
+  .hero-actions .btn-ghost {
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+    padding: 16px 24px;
     font-size: 15px;
     cursor: none;
   }
@@ -431,6 +450,13 @@ html.light .btn-ghost:hover {
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
+  width: max-content;
+  max-width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.scroll-indicator__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -440,6 +466,7 @@ html.light .btn-ghost:hover {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 500;
+  text-align: center;
   animation: fadeUp 1s 1s both;
 }
 

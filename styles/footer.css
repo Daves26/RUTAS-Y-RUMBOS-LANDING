@@ -52,6 +52,8 @@ footer img {
   font-weight: 300;
   max-width: 22rem;
   line-height: 1.5;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .footer-cursor-toggle {
@@ -121,18 +123,28 @@ footer img {
 @media (min-width: 769px) {
   footer {
     padding: 48px 60px;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1.4fr) 1fr;
+    align-items: center;
+    justify-items: stretch;
     gap: 24px;
+    text-align: left;
   }
 
   .footer-brand {
     justify-content: flex-start;
+    justify-self: start;
   }
 
   .footer-copy {
-    max-width: none;
+    justify-self: center;
+    max-width: 28rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-self: end;
   }
 
   .footer-links a {
