@@ -13,6 +13,15 @@
   overflow: hidden;
 }
 
+.hero-fx {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  will-change: transform;
+}
+
 @media (min-width: 769px) {
   .hero {
     padding: 140px 40px 80px;
@@ -24,9 +33,77 @@
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 60%, rgba(255, 102, 0, 0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 30% at 20% 30%, rgba(255, 102, 0, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(255, 102, 0, 0.16) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 45% at 15% 25%, rgba(255, 102, 0, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 88% 18%, rgba(255, 140, 66, 0.06) 0%, transparent 50%),
     var(--dark);
+}
+
+.hero-mesh {
+  position: absolute;
+  inset: -25%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 80%, rgba(255, 102, 0, 0.22), transparent 55%),
+    radial-gradient(ellipse 50% 45% at 12% 22%, rgba(255, 140, 66, 0.1), transparent 50%),
+    radial-gradient(ellipse 40% 35% at 92% 35%, rgba(255, 102, 0, 0.12), transparent 48%);
+  animation: meshDrift 22s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+  opacity: 0.75;
+}
+
+html.light .hero-mesh {
+  mix-blend-mode: multiply;
+  opacity: 0.45;
+}
+
+.hero-beam {
+  position: absolute;
+  z-index: 0;
+  width: 140%;
+  height: 42%;
+  left: -20%;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 102, 0, 0.04) 35%,
+    rgba(255, 140, 66, 0.12) 50%,
+    rgba(255, 102, 0, 0.04) 65%,
+    transparent 100%
+  );
+  filter: blur(28px);
+  animation: beamSweep 14s ease-in-out infinite;
+  opacity: 0.45;
+}
+
+.hero-beam--1 {
+  top: 8%;
+  transform: rotate(-11deg);
+}
+
+.hero-beam--2 {
+  bottom: 12%;
+  animation-delay: -7s;
+  animation-duration: 18s;
+  transform: rotate(8deg);
+  opacity: 0.3;
+}
+
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+html.light .hero-noise {
+  opacity: 0.035;
+  mix-blend-mode: multiply;
 }
 
 .orb {
@@ -34,28 +111,27 @@
   border-radius: 50%;
   filter: blur(80px);
   pointer-events: none;
-  opacity: 0;
-  animation: orbFloat 8s ease-in-out infinite;
+  z-index: 0;
+  animation: orbFloatLoop 14s ease-in-out infinite;
 }
 
 .orb-1 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(255, 102, 0, 0.18) 0%, transparent 70%);
-  top: -100px;
-  right: -100px;
-  animation-delay: 0s;
-  animation-duration: 10s;
+  width: min(520px, 90vw);
+  height: min(520px, 90vw);
+  background: radial-gradient(circle, rgba(255, 102, 0, 0.28) 0%, transparent 68%);
+  top: -120px;
+  right: -120px;
+  animation-duration: 16s;
 }
 
 .orb-2 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255, 140, 66, 0.12) 0%, transparent 70%);
-  bottom: 100px;
-  left: -80px;
-  animation-delay: 3s;
-  animation-duration: 12s;
+  width: min(340px, 70vw);
+  height: min(340px, 70vw);
+  background: radial-gradient(circle, rgba(255, 140, 66, 0.18) 0%, transparent 70%);
+  bottom: 80px;
+  left: -100px;
+  animation-delay: -4s;
+  animation-duration: 18s;
 }
 
 .theme-toggle {
@@ -117,10 +193,11 @@ html.light .icon-moon {
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
   background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 45%, black 20%, transparent 72%);
+  animation: gridShift 48s linear infinite;
 }
 
 html.light .grid-bg {
@@ -170,7 +247,7 @@ html.light .grid-bg {
   animation: pulse 2s infinite;
 }
 
-.hero h1 {
+.hero-title {
   font-family: 'Syne', sans-serif;
   font-size: clamp(2rem, 12vw + 0.5rem, 108px);
   font-weight: 800;
@@ -178,17 +255,54 @@ html.light .grid-bg {
   letter-spacing: -0.03em;
   position: relative;
   z-index: 1;
-  animation: fadeUp 0.9s 0.35s both;
 }
 
-.hero h1 .line-orange {
+.hero-line {
+  display: block;
+  animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-line:nth-child(1) {
+  animation-delay: 0.28s;
+}
+
+.hero-line:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.hero-line:nth-child(3) {
+  animation-delay: 0.52s;
+}
+
+.hero h1 .line-orange,
+.hero-title .line-orange {
   color: var(--orange);
-  display: block;
 }
 
-.hero h1 .line-white {
+.hero h1 .line-white,
+.hero-title .line-white {
   color: var(--white);
-  display: block;
+}
+
+.hero-line--accent {
+  background: linear-gradient(
+    105deg,
+    var(--orange) 0%,
+    var(--orange-light) 40%,
+    #ffb380 55%,
+    var(--orange-light) 70%,
+    var(--orange) 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation:
+    fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both,
+    accentShimmer 7s ease-in-out 1.2s infinite;
+  text-shadow: none;
+  filter: drop-shadow(0 0 40px var(--orange-glow));
 }
 
 .hero-sub {
@@ -217,6 +331,8 @@ html.light .grid-bg {
 }
 
 .btn-primary {
+  position: relative;
+  overflow: hidden;
   background: var(--orange);
   color: #fff;
   border: none;
@@ -227,14 +343,34 @@ html.light .grid-bg {
   font-weight: 500;
   font-family: 'DM Sans', sans-serif;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background 0.25s ease;
   box-shadow: 0 0 0 0 var(--orange-glow);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -40%;
+  background: linear-gradient(
+    105deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-18deg) translateX(-120%);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
 }
 
 .btn-primary:hover {
   background: var(--orange-light);
-  box-shadow: 0 8px 40px var(--orange-glow), 0 0 0 1px var(--orange);
-  transform: translateY(-2px);
+  box-shadow: 0 12px 48px var(--orange-glow), 0 0 0 1px rgba(255, 140, 66, 0.5);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.btn-primary:hover::after {
+  transform: skewX(-18deg) translateX(220%);
 }
 
 .btn-ghost {
@@ -258,8 +394,13 @@ html.light .grid-bg {
 
 .btn-ghost:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: var(--white-30);
-  transform: translateY(-2px);
+  border-color: var(--glass-border-orange);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+html.light .btn-ghost:hover {
+  box-shadow: 0 12px 36px rgba(255, 102, 0, 0.08);
 }
 
 @media (min-width: 769px) {
@@ -307,4 +448,26 @@ html.light .grid-bg {
   height: 48px;
   background: linear-gradient(to bottom, var(--orange), transparent);
   animation: scrollLine 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mesh,
+  .hero-beam,
+  .grid-bg {
+    animation: none !important;
+  }
+
+  .hero-line--accent {
+    animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+    filter: none;
+  }
+
+  .orb {
+    animation: none;
+    opacity: 0.75;
+  }
+
+  .btn-primary::after {
+    display: none;
+  }
 }

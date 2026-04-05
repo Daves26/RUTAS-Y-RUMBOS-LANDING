@@ -1,0 +1,77 @@
+/* Scroll reveals, section accents — motion-site style (palette unchanged) */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
+  filter: blur(10px);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform, filter;
+}
+
+.reveal.is-inview {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
+/* Evita interacción con bloques animados fuera de vista (refuerzo si no hay soporte de `inert`) */
+.reveal:not(.is-inview) {
+  pointer-events: none;
+}
+
+.section-title.reveal {
+  transition-delay: calc(var(--reveal-delay, 0s) + 0.08s);
+}
+
+.section--motion {
+  position: relative;
+}
+
+.section--motion::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -1px;
+  transform: translateX(-50%);
+  width: min(92%, 720px);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 102, 0, 0.35),
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 102, 0, 0.35),
+    transparent
+  );
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+html.light .section--motion::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 102, 0, 0.4),
+    rgba(0, 0, 0, 0.06),
+    rgba(255, 102, 0, 0.4),
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+    will-change: auto;
+    pointer-events: auto;
+  }
+
+  .section--motion::before {
+    opacity: 0.5;
+  }
+}

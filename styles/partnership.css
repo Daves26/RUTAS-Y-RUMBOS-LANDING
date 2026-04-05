@@ -4,6 +4,7 @@
 }
 
 .partnership-card {
+  position: relative;
   background: linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
   border: 1px solid var(--glass-border-orange);
   border-radius: 24px;
@@ -13,6 +14,52 @@
   gap: 28px;
   align-items: center;
   backdrop-filter: blur(20px);
+  overflow: hidden;
+  transition: box-shadow 0.5s ease, border-color 0.35s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: partnershipGlow 10s ease-in-out infinite;
+}
+
+.partnership-card::before {
+  content: '';
+  position: absolute;
+  inset: -55%;
+  background: conic-gradient(
+    from 200deg,
+    transparent 0deg,
+    rgba(255, 102, 0, 0.22) 55deg,
+    rgba(255, 140, 66, 0.12) 120deg,
+    transparent 200deg
+  );
+  opacity: 0.5;
+  transform-origin: center;
+  animation: partnershipRing 18s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.partnership-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.partnership-card:hover {
+  box-shadow: 0 0 0 1px rgba(255, 102, 0, 0.4), 0 28px 70px rgba(255, 102, 0, 0.14);
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partnership-card {
+    animation: none;
+  }
+
+  .partnership-card::before {
+    animation: none;
+    opacity: 0.25;
+  }
+
+  .partnership-card:hover {
+    transform: none;
+  }
 }
 
 @media (min-width: 769px) {
