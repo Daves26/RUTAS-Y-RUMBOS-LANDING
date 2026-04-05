@@ -34,7 +34,7 @@
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <div class="nav-actions">
-  <button type="button" class="nav-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+  <button type="button" class="nav-cta" id="nav-cta-btn">
     Cotizar viaje
   </button>
   <button type="button" class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" onclick="toggleTheme()">
@@ -46,6 +46,10 @@
   </button>
   </div>
 </nav>
+
+<div id="app-container">
+  <!-- Vista Principal del Inicio -->
+  <main id="home-view" class="view active-view">
 
 <section class="hero" id="home">
   <div class="hero-bg"></div>
@@ -155,7 +159,7 @@
   <h2 class="section-title reveal">Descubre los <em>mejores destinos</em> del mundo</h2>
 
   <div class="dest-grid">
-    <div class="dest-card dest-card-1">
+    <div class="dest-card dest-card-1" data-dest-id="punta-cana">
       <div class="dest-img-container">
         <img src="/destino-punta-cana.jpg" alt="San Andrés" class="dest-img">
         <div class="dest-info">
@@ -165,7 +169,7 @@
       </div>
     </div>
 
-    <div class="dest-card dest-card-2">
+    <div class="dest-card dest-card-2" data-dest-id="europa">
       <div class="dest-img-container">
         <img src="/destino-europa.jpg" alt="Europa" class="dest-img">
         <div class="dest-info">
@@ -175,7 +179,7 @@
       </div>
     </div>
 
-    <div class="dest-card dest-card-3">
+    <div class="dest-card dest-card-3" data-dest-id="cartagena">
       <div class="dest-img-container">
         <img src="/destino-cartagena.jpg" alt="Cartagena" class="dest-img">
         <div class="dest-info">
@@ -185,7 +189,7 @@
       </div>
     </div>
 
-    <div class="dest-card dest-card-4">
+    <div class="dest-card dest-card-4" data-dest-id="san-andres">
       <div class="dest-img-container">
         <img src="/destino-san-andres.jpg" alt="San Andrés" class="dest-img">
         <div class="dest-info">
@@ -195,7 +199,7 @@
       </div>
     </div>
 
-    <div class="dest-card dest-card-5">
+    <div class="dest-card dest-card-5" data-dest-id="mexico">
       <div class="dest-img-container">
         <img src="/destino-mexico.jpg" alt="Mexico" class="dest-img">
         <div class="dest-info">
@@ -323,6 +327,56 @@
     </div>
   </div>
 </section>
+  </main> <!-- Cierre de #home-view -->
+
+  <!-- Vista Destino Detalle -->
+  <main id="destination-view" class="view hidden-view">
+    <div class="dest-detail-container">
+      
+      <!-- Skeleton Loading State -->
+      <div id="dest-skeleton" class="dest-skeleton active">
+         <div class="skeleton-banner skeleton-pulse"></div>
+         <div class="skeleton-grid">
+            <div class="skeleton-card skeleton-pulse"></div>
+            <div class="skeleton-card skeleton-pulse"></div>
+            <div class="skeleton-card skeleton-pulse"></div>
+         </div>
+      </div>
+
+      <!-- Real Content State -->
+      <div id="dest-content" class="dest-content hidden">
+         <div class="dest-banner">
+           <img id="dest-banner-img" src="" alt="Destino Banner">
+           <div class="dest-banner-overlay">
+              <h1 id="dest-title" class="dest-title">...</h1>
+              <p id="dest-region" class="dest-region">...</p>
+           </div>
+         </div>
+         
+         <div class="dest-details-sections">
+            <section class="dest-detail-section">
+               <h2><i class="fas fa-plane-departure" style="color:var(--orange);"></i> Aerolíneas (BOG/BGA)</h2>
+               <div class="dest-cards-grid" id="dest-airlines"></div>
+            </section>
+            
+            <section class="dest-detail-section">
+               <h2><i class="fas fa-hotel" style="color:var(--orange);"></i> Principales Hoteles</h2>
+               <div class="dest-cards-grid" id="dest-hotels"></div>
+            </section>
+            
+            <section class="dest-detail-section">
+               <h2><i class="fas fa-plus-circle" style="color:var(--orange);"></i> Extras Relevantes</h2>
+               <div class="dest-cards-grid" id="dest-extras"></div>
+            </section>
+         </div>
+         
+         <div class="dest-detail-cta">
+            <button class="btn-primary" id="dest-cta-btn">Empezar a planear este destino</button>
+         </div>
+      </div>
+    </div>
+  </main>
+</div> <!-- Cierre de #app-container -->
 
 <footer>
   <div class="footer-brand">

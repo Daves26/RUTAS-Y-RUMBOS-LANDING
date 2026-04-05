@@ -1,4 +1,5 @@
 import './style.css';
+import { destinationsData } from './js/data.js';
 
 const htmlRoot = document.documentElement;
 const CURSOR_PREF_KEY = 'ryr-no-custom-cursor';
@@ -35,7 +36,19 @@ navToggle?.addEventListener('click', () => {
 });
 
 navMenu?.querySelectorAll('a[href^="#"]').forEach((a) => {
-  a.addEventListener('click', () => setNavOpen(false));
+  a.addEventListener('click', (e) => {
+    setNavOpen(false);
+    // Interceptar click si estamos en la vista de detalle del SPA
+    const homeViewEl = document.getElementById('home-view');
+    if (homeViewEl && !homeViewEl.classList.contains('active-view')) {
+      e.preventDefault();
+      const targetId = a.getAttribute('href').substring(1);
+      // Trigger navigation with page transition
+      if (typeof window.navigateToHome === 'function') {
+        window.navigateToHome(targetId);
+      }
+    }
+  });
 });
 
 window.addEventListener('resize', () => {
@@ -72,10 +85,15 @@ function animRing() {
 }
 animRing();
 
-const logoInicio = document.querySelector('.nav-logo');
+const logoInicio = document.querySelector('.nav-logo a');
 logoInicio?.addEventListener('click', (e) => {
   e.preventDefault();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const homeViewEl = document.getElementById('home-view');
+  if (homeViewEl && !homeViewEl.classList.contains('active-view') && typeof window.navigateToHome === 'function') {
+    window.navigateToHome();
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 });
 
 document.querySelectorAll('button, a, .service-card, .dest-card, .contact-item').forEach((el) => {
@@ -239,3 +257,220 @@ window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',
 initNavScroll();
 initHeroParallax();
 initScrollReveals();
+
+// --- LÓGICA SPA (Single Page Application) ---
+const homeView = document.getElementById('home-view');
+const destView = document.getElementById('destination-view');
+const btnBackHome = document.getElementById('btn-back-home');
+const destSkeleton = document.getElementById('dest-skeleton');
+const destContent = document.getElementById('dest-content');
+
+const destBannerImg = document.getElementById('dest-banner-img');
+const destTitle = document.getElementById('dest-title');
+const destRegion = document.getElementById('dest-region');
+const destAirlines = document.getElementById('dest-airlines');
+const destHotels = document.getElementById('dest-hotels');
+const destExtras = document.getElementById('dest-extras');
+
+const navCtaBtn = document.getElementById('nav-cta-btn');
+navCtaBtn?.addEventListener('click', () => {
+  const homeViewEl = document.getElementById('home-view');
+  if (homeViewEl && !homeViewEl.classList.contains('active-view') && typeof window.navigateToHome === 'function') {
+    window.navigateToHome('contacto');
+  } else {
+    document.getElementById('contacto')?.scrollIntoView({behavior:'smooth'});
+  }
+});
+
+function navigateToHome(targetId = null) {
+  if (!homeView || !destView) return;
+  
+  // Determine target position before transition
+  let targetTop = 0;
+  if (targetId) {
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
+    }
+  }
+  
+  // Apple-style crossfade transition
+  destView.style.opacity = '0';
+  destView.style.transform = 'scale(0.98)';
+  
+  homeView.style.opacity = '0';
+  homeView.style.transform = 'scale(1.02)';
+  homeView.classList.remove('hidden-view');
+  homeView.classList.add('active-view');
+  
+  // Scroll to target position instantly (before view is visible)
+  if (targetTop > 0) {
+    window.scrollTo({ top: targetTop, behavior: 'instant' });
+  } else {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+  
+  // Force reflow
+  void homeView.offsetWidth;
+  
+  // Fade in home view (already at correct scroll position)
+  homeView.style.transition = 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+  homeView.style.opacity = '1';
+  homeView.style.transform = 'scale(1)';
+  
+  setTimeout(() => {
+    destView.classList.remove('active-view');
+    destView.classList.add('hidden-view');
+    destView.style.transition = '';
+    destView.style.opacity = '';
+    destView.style.transform = '';
+    homeView.style.transition = '';
+    homeView.style.opacity = '';
+    homeView.style.transform = '';
+  }, 500);
+}
+// Hacerla disponible globalmente para poderla llamar desde los Listeners de arriba
+window.navigateToHome = navigateToHome;
+
+function navigateToDestination(destId) {
+  if (!homeView || !destView) return;
+  
+  // Apple-style crossfade transition
+  // Fade out home view
+  homeView.style.opacity = '0';
+  homeView.style.transform = 'scale(1.02)';
+  
+  // Prepare destination view
+  destView.style.opacity = '0';
+  destView.style.transform = 'scale(0.98)';
+  destView.classList.remove('hidden-view');
+  destView.classList.add('active-view');
+  
+  // Force reflow
+  void destView.offsetWidth;
+  
+  // Fade in destination view
+  destView.style.transition = 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+  destView.style.opacity = '1';
+  destView.style.transform = 'scale(1)';
+  
+  setTimeout(() => {
+    homeView.classList.remove('active-view');
+    homeView.classList.add('hidden-view');
+    homeView.style.transition = '';
+    homeView.style.opacity = '';
+    homeView.style.transform = '';
+    destView.style.transition = '';
+    destView.style.opacity = '';
+    destView.style.transform = '';
+    
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    // Preparar UI: Mostrar Skeleton, ocultar contenido real
+    if (destContent && destSkeleton) {
+      destContent.classList.remove('active');
+      destContent.classList.add('hidden');
+      destSkeleton.classList.add('active');
+      destSkeleton.classList.remove('hidden');
+    }
+
+    loadDestinationData(destId);
+  }, 500);
+}
+
+function renderDestination(data) {
+  if (destBannerImg) {
+    destBannerImg.src = data.img;
+    destBannerImg.alt = data.name;
+  }
+  if (destTitle) destTitle.textContent = data.name;
+  if (destRegion) destRegion.textContent = data.region;
+  
+  if (destAirlines) {
+    destAirlines.innerHTML = data.airlines.map(a => `
+      <div class="dest-glass-card">
+         <div class="dest-glass-bg">
+            <img src="https://placehold.co/400x300/e0e0e0/555555?text=Aerolinea+Img" alt="Fondo placeholder">
+         </div>
+         <div class="dest-glass-content">
+            <div class="glass-card-icon"><i class="fas fa-plane"></i></div>
+            <h3>${a.name}</h3>
+            <div class="dest-glass-card-sub">${a.route}</div>
+            <p>${a.type}</p>
+         </div>
+      </div>
+    `).join('');
+  }
+  
+  if (destHotels) {
+    destHotels.innerHTML = data.hotels.map(h => `
+      <div class="dest-glass-card">
+         <div class="dest-glass-bg">
+            <img src="https://placehold.co/400x300/e0e0e0/555555?text=Hotel+Img" alt="Fondo placeholder">
+         </div>
+         <div class="dest-glass-content">
+            <div class="glass-card-icon"><i class="fas fa-bed"></i></div>
+            <h3>${h.name}</h3>
+            <div class="dest-glass-card-sub">${h.rating}</div>
+            <p>${h.desc}</p>
+         </div>
+      </div>
+    `).join('');
+  }
+  
+  if (destExtras) {
+    destExtras.innerHTML = data.extras.map(e => `
+      <div class="dest-glass-card">
+         <div class="dest-glass-bg">
+            <img src="https://placehold.co/400x300/e0e0e0/555555?text=Extra+Img" alt="Fondo placeholder">
+         </div>
+         <div class="dest-glass-content">
+            <div class="glass-card-icon"><i class="fas ${e.icon}"></i></div>
+            <h3>${e.title}</h3>
+            <p>${e.desc}</p>
+         </div>
+      </div>
+    `).join('');
+  }
+  
+  if (destContent && destSkeleton) {
+    destSkeleton.classList.remove('active');
+    destSkeleton.classList.add('hidden');
+    destContent.classList.remove('hidden');
+    destContent.classList.add('active');
+  }
+}
+
+function loadDestinationData(destId) {
+  const cacheKey = `ryr-dest-${destId}`;
+  const cachedData = localStorage.getItem(cacheKey);
+  
+  if (cachedData) {
+    setTimeout(() => {
+      renderDestination(JSON.parse(cachedData));
+    }, 200); // Ligero delay para UX cuando viene del cache
+    return;
+  }
+  
+  setTimeout(() => {
+    const data = destinationsData[destId];
+    if (data) {
+      localStorage.setItem(cacheKey, JSON.stringify(data));
+      renderDestination(data);
+    } else {
+      navigateToHome(); // Fallback si no existe
+    }
+  }, 1200); // 1.2s simulando latencia para mostrar the skeleton
+}
+
+const destCtaBtn = document.getElementById('dest-cta-btn');
+destCtaBtn?.addEventListener('click', () => window.navigateToHome('contacto'));
+
+document.querySelectorAll('.dest-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const destId = card.getAttribute('data-dest-id');
+    if (destId) {
+      navigateToDestination(destId);
+    }
+  });
+});
