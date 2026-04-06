@@ -334,7 +334,10 @@ window.navigateToHome = navigateToHome;
 
 function navigateToDestination(destId) {
   if (!homeView || !destView) return;
-  
+
+  // Reset scroll position BEFORE transition to prevent scroll transfer
+  window.scrollTo({ top: 0, behavior: 'instant' });
+
   // Apple-style crossfade transition
   // Fade out home view
   homeView.style.opacity = '0';
@@ -363,8 +366,6 @@ function navigateToDestination(destId) {
     destView.style.transition = '';
     destView.style.opacity = '';
     destView.style.transform = '';
-    
-    window.scrollTo({ top: 0, behavior: 'instant' });
 
     // Preparar UI: Mostrar Skeleton, ocultar contenido real
     if (destContent && destSkeleton) {
@@ -390,7 +391,7 @@ function renderDestination(data) {
     destAirlines.innerHTML = data.airlines.map(a => `
       <div class="dest-glass-card">
          <div class="dest-glass-bg">
-            <img src="https://placehold.co/400x300/e0e0e0/555555?text=Aerolinea+Img" alt="Fondo placeholder">
+            <img src="${a.img || 'https://placehold.co/400x300/e0e0e0/555555?text=Aerolinea'}" alt="${a.name}">
          </div>
          <div class="dest-glass-content">
             <div class="glass-card-icon"><i class="fas fa-plane"></i></div>
@@ -401,12 +402,12 @@ function renderDestination(data) {
       </div>
     `).join('');
   }
-  
+
   if (destHotels) {
     destHotels.innerHTML = data.hotels.map(h => `
       <div class="dest-glass-card">
          <div class="dest-glass-bg">
-            <img src="https://placehold.co/400x300/e0e0e0/555555?text=Hotel+Img" alt="Fondo placeholder">
+            <img src="${h.img || 'https://placehold.co/400x300/e0e0e0/555555?text=Hotel'}" alt="${h.name}">
          </div>
          <div class="dest-glass-content">
             <div class="glass-card-icon"><i class="fas fa-bed"></i></div>
@@ -417,12 +418,12 @@ function renderDestination(data) {
       </div>
     `).join('');
   }
-  
+
   if (destExtras) {
     destExtras.innerHTML = data.extras.map(e => `
       <div class="dest-glass-card">
          <div class="dest-glass-bg">
-            <img src="https://placehold.co/400x300/e0e0e0/555555?text=Extra+Img" alt="Fondo placeholder">
+            <img src="${e.img || 'https://placehold.co/400x300/e0e0e0/555555?text=Extra'}" alt="${e.title}">
          </div>
          <div class="dest-glass-content">
             <div class="glass-card-icon"><i class="fas ${e.icon}"></i></div>
@@ -442,7 +443,7 @@ function renderDestination(data) {
 }
 
 function loadDestinationData(destId) {
-  const cacheKey = `ryr-dest-${destId}`;
+  const cacheKey = `ryr-dest-v2-${destId}`;
   const cachedData = localStorage.getItem(cacheKey);
   
   if (cachedData) {

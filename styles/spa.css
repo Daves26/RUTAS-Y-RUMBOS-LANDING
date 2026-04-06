@@ -11,6 +11,7 @@
   transform: scale(1);
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 .hidden-view {
@@ -21,6 +22,8 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: 0;
+  overflow: hidden;
   pointer-events: none;
   z-index: 0;
 }
@@ -219,7 +222,7 @@
   position: relative;
   border-radius: 16px; /* Mismo radio base que dest-card */
   overflow: hidden;
-  height: 340px;
+  height: 280px;
   display: flex;
   align-items: flex-end;
   background: var(--bg-card); /* Fallback */
@@ -267,7 +270,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 2rem 1.5rem 1.5rem 1.5rem; /* Padding superior extra para que el icono flotante no tape el título */
+  padding: 1.25rem 1.25rem 1rem 1.25rem;
   /* Estilo Liquid Glass */
   background: rgba(10, 10, 10, 0.45);
   backdrop-filter: blur(12px);
@@ -279,16 +282,16 @@
 }
 
 .dest-glass-content h3 {
-  font-size: var(--text-xl);
-  margin-bottom: 0.5rem;
+  font-size: var(--text-lg);
+  margin-bottom: 0.25rem;
   color: #ffffff;
-  padding-right: 3rem; /* Evita que el texto invada el área bajo el icono flotante */
+  padding-right: 2.5rem;
 }
 
 .dest-glass-card-sub {
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   color: var(--orange);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -296,26 +299,26 @@
 }
 
 .dest-glass-content p {
-  font-size: var(--text-md);
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.5;
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
   text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  margin-top: 0.5rem; /* Separación extra */
+  margin-top: 0.25rem;
 }
 
 .glass-card-icon {
   position: absolute;
-  top: -24px;
+  top: -20px;
   right: var(--spacing-lg);
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   background: var(--orange);
   color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 

@@ -16,3 +16,6 @@ yarn-error.log*
 # Configuración de IDEs
 .vscode/
 .idea/
+
+
+info-imgs-routes.md
