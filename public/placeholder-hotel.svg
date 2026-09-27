@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 450" role="img" aria-label="Foto del hotel próximamente">
+  <rect width="720" height="450" fill="#1b1b1b"/>
+  <circle cx="360" cy="190" r="105" fill="#ff6600" opacity=".08"/>
+  <path d="M302 242V150h116v92M322 150v-22h76v22M326 184h12m20 0h12m20 0h12m-76 31h12m20 0h12m20 0h12" fill="none" stroke="#ff8c42" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="360" y="330" text-anchor="middle" fill="#eee" font-family="Arial,sans-serif" font-size="27">Foto próximamente</text>
+</svg>

@@ -1,4 +1,5 @@
 import './style.css';
+import './image-fallback.js';
 
 const htmlRoot = document.documentElement;
 const CURSOR_PREF_KEY = 'ryr-no-custom-cursor';
