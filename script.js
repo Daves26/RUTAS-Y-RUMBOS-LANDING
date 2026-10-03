@@ -123,32 +123,3 @@ el.style.transform = 'translateY(24px)';
 el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
 observer.observe(el);
 });
-
-// Toggle modo claro
-window.toggleTheme = function () {
-  document.documentElement.classList.toggle('light');
-};
-
-// 1. Determinar el tema inicial
-const savedTheme = localStorage.getItem('theme');
-const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-    htmlRoot.classList.remove('light');
-} else {
-    htmlRoot.classList.add('light');
-}
-
-// 2. Función de cambio mejorada
-window.toggleTheme = function () {
-    const isNowLight = htmlRoot.classList.toggle('light');
-    localStorage.setItem('theme', isNowLight ? 'light' : 'dark');
-};
-
-// 3. Escuchar cambios en el sistema en tiempo real (opcional)
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    if (!localStorage.getItem('theme')) { // Solo si el usuario no ha elegido manualmente
-        if (e.matches) htmlRoot.classList.remove('light');
-        else htmlRoot.classList.add('light');
-    }
-});

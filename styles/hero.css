@@ -1,4 +1,4 @@
-/* Hero, background effects, theme toggle, primary CTAs */
+/* Hero, background effects, primary CTAs */
 .hero {
   min-height: 100vh;
   min-height: 100dvh;
@@ -58,75 +58,16 @@
   animation-duration: 12s;
 }
 
-.theme-toggle {
-  width: 44px;
-  height: 44px;
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  flex-shrink: 0;
-}
-
-.theme-toggle:hover {
-  background: var(--orange-subtle);
-  border-color: var(--glass-border-orange);
-  box-shadow: 0 0 16px var(--orange-glow);
-}
-
-.theme-toggle svg {
-  width: 16px;
-  height: 16px;
-  stroke: var(--white);
-  stroke-width: 2;
-  fill: none;
-  transition: stroke 0.2s;
-}
-
-@media (min-width: 769px) {
-  .theme-toggle {
-    width: 40px;
-    height: 40px;
-    cursor: none;
-  }
-}
-
-.icon-sun {
-  display: none;
-}
-
-.icon-moon {
-  display: block;
-}
-
-html.light .icon-sun {
-  display: block;
-}
-
-html.light .icon-moon {
-  display: none;
-}
-
 .grid-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
-}
-
-html.light .grid-bg {
-  background-image:
     linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
 }
 
 .hero-badge {

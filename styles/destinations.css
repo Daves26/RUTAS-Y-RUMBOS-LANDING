@@ -62,7 +62,7 @@
   grid-row: auto;
 }
 
-html.light .dest-card {
+.dest-card {
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -197,7 +197,7 @@ html.light .dest-card {
   pointer-events: none;
 }
 
-html.light .dest-img-container::after {
+.dest-img-container::after {
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.75) 0%,
