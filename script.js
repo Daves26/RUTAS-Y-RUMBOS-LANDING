@@ -1,21 +1,6 @@
 import './style.css';
 import './image-fallback.js';
 
-const htmlRoot = document.documentElement;
-const CURSOR_PREF_KEY = 'ryr-no-custom-cursor';
-
-// Cargar preferencia: por defecto es '1' (cursor estándar/no-custom) si no existe
-const savedCursorPref = localStorage.getItem(CURSOR_PREF_KEY);
-if (savedCursorPref === null || savedCursorPref === '1') {
-  htmlRoot.classList.add('no-custom-cursor');
-} else {
-  htmlRoot.classList.remove('no-custom-cursor');
-}
-
-function isCustomCursorActive() {
-  return window.innerWidth >= 769 && !htmlRoot.classList.contains('no-custom-cursor');
-}
-
 // Menú móvil (panel accesible)
 const siteNav = document.getElementById('siteNav');
 const navToggle = document.getElementById('navToggle');
@@ -45,27 +30,6 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') setNavOpen(false);
 });
 
-// Cursor (solo escritorio; cursor oculto en móvil vía CSS)
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => {
-if (!cursor || !isCustomCursorActive()) return;
-mx = e.clientX; my = e.clientY;
-cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
-});
-function animRing() {
-if (!ring || !isCustomCursorActive()) {
-  requestAnimationFrame(animRing);
-  return;
-}
-rx += (mx - rx) * 0.12;
-ry += (my - ry) * 0.12;
-ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
-requestAnimationFrame(animRing);
-}
-animRing();
-
 // Scroll to top
 const logoInicio = document.querySelector('.nav-logo');
 logoInicio.addEventListener('click', (e) => {
@@ -76,26 +40,6 @@ logoInicio.addEventListener('click', (e) => {
   });
 });
 
-
-// Hover effects on interactive elements (escritorio)
-document.querySelectorAll('button, a, .service-card, .dest-card, .contact-item').forEach(el => {
-el.addEventListener('mouseenter', () => {
-    if (!cursor || !isCustomCursorActive()) return;
-    cursor.style.transform += ' scale(1.5)';
-    ring.style.opacity = '1';
-    ring.style.transform += ' scale(1.3)';
-});
-el.addEventListener('mouseleave', () => {
-    if (!ring || !isCustomCursorActive()) return;
-    ring.style.opacity = '0.6';
-});
-});
-
-// Toggle cursor
-window.toggleCursor = function () {
-  htmlRoot.classList.toggle('no-custom-cursor');
-  localStorage.setItem(CURSOR_PREF_KEY, htmlRoot.classList.contains('no-custom-cursor') ? '1' : '0');
-};
 
 // WhatsApp form
 window.sendWhatsApp = function () {

@@ -1,4 +1,4 @@
-/* Reset, document, body, shared cursor defaults */
+/* Reset and document defaults */
 *,
 *::before,
 *::after {
@@ -21,22 +21,9 @@ body {
   transition: var(--theme-transition);
 }
 
-@media (min-width: 769px) {
-  body {
-    cursor: none;
-  }
-}
-
 a,
-a.hero-badge {
-  cursor: none;
-}
-
-label,
-input,
-select,
-textarea {
-  cursor: none;
+button {
+  cursor: pointer;
 }
 
 .highlight-inner,

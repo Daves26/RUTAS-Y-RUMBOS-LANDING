@@ -14,7 +14,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--orange);
+  color: var(--white);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -40,8 +40,12 @@
 }
 
 .section-title em {
-  color: var(--orange);
+  color: var(--white);
   font-style: normal;
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.12em;
 }
 
 .services-grid {
@@ -105,13 +109,12 @@
   justify-content: center;
   margin-bottom: 28px;
   font-size: 22px;
-  transition: box-shadow 0.3s, transform 0.3s;
-  color: var(--orange);
+  transition: transform 0.3s;
+  color: var(--white);
 }
 
 .service-card:hover .service-icon {
-  box-shadow: 0 0 24px var(--orange-glow);
-  transform: scale(1.06);
+  transform: translateY(-2px);
 }
 
 .service-card h3 {

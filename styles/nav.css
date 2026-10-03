@@ -88,45 +88,6 @@
   flex-shrink: 0;
 }
 
-.cursor-toggle {
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  color: var(--white);
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-
-.cursor-toggle:hover {
-  background: var(--orange-subtle);
-  border-color: var(--glass-border-orange);
-  box-shadow: 0 0 16px var(--orange-glow);
-}
-
-.icon-cursor {
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-@media (min-width: 769px) {
-  .cursor-toggle {
-    cursor: none;
-  }
-}
-
-html.no-custom-cursor .cursor-toggle {
-  cursor: pointer;
-}
-
 .nav-links {
   list-style: none;
   margin: 0;
@@ -171,7 +132,7 @@ html.no-custom-cursor .cursor-toggle {
   letter-spacing: 0.04em;
   border-radius: 12px;
   transition: color 0.2s, background 0.2s;
-  cursor: none;
+  cursor: pointer;
 }
 
 .nav-links a:hover,
@@ -196,7 +157,6 @@ html.no-custom-cursor .cursor-toggle {
 }
 
 .nav-cta:hover {
-  background: var(--orange-light);
   box-shadow: 0 0 24px var(--orange-glow);
   transform: scale(1.03);
 }
@@ -275,6 +235,5 @@ html.no-custom-cursor .cursor-toggle {
     padding: 10px 24px;
     min-height: 0;
     font-size: 14px;
-    cursor: none;
   }
 }
